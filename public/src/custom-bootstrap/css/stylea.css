@@ -1,0 +1,12 @@
+.input-group.custom1 { width: 100%; }
+.input-group.custom1 input { width: 80%; }
+.input-group.custom1 select { width: auto; }
+
+.topmargin { margin-top: 16px; }
+
+.fa { margin-right: 4px; }
+.fa.ori { margin-right: 0; }
+
+.botm-margin { margin-bottom: 50px; }
+
+/*# sourceMappingURL=stylea.css.map */

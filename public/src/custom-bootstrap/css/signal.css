@@ -1,0 +1,25 @@
+.signal { width: 32px; height: 32px; font-size: 0; display: inline-block; vertical-align: bottom; }
+.signal .signal-bar { width: 20%; margin: 0 2%; border: 2px solid #676a6c; display: inline-block; vertical-align: bottom; border-radius: 4px; box-sizing: border-box; }
+
+.signal-online .signal-bar:nth-child(1) { height: 25%; animation: signalBlink1 0.8s ease-in infinite alternate; }
+.signal-online .signal-bar:nth-child(2) { height: 50%; animation: signalBlink2 0.8s ease-in infinite alternate; }
+.signal-online .signal-bar:nth-child(3) { height: 75%; animation: signalBlink3 0.8s ease-in infinite alternate; }
+.signal-online .signal-bar:nth-child(4) { height: 100%; animation: signalBlink4 0.8s ease-in infinite alternate; }
+
+.signal-offline .signal-bar:nth-child(1) { height: 25%; background-color: #aaa; border-color: #aaa; }
+.signal-offline .signal-bar:nth-child(2) { height: 50%; background-color: #aaa; border-color: #aaa; }
+.signal-offline .signal-bar:nth-child(3) { height: 75%; background-color: #aaa; border-color: #aaa; }
+.signal-offline .signal-bar:nth-child(4) { height: 100%; background-color: #aaa; border-color: #aaa; }
+
+@keyframes signalBlink1 { 25% { background-color: #1ab394; border-color: #1ab394; }
+  50% { background-color: #1ab394; border-color: #1ab394; }
+  75% { background-color: #1ab394; border-color: #1ab394; }
+  100% { background-color: #1ab394; border-color: #1ab394; } }
+@keyframes signalBlink2 { 50% { background-color: #1ab394; border-color: #1ab394; }
+  75% { background-color: #1ab394; border-color: #1ab394; }
+  100% { background-color: #1ab394; border-color: #1ab394; } }
+@keyframes signalBlink3 { 75% { background-color: #1ab394; border-color: #1ab394; }
+  100% { background-color: #1ab394; border-color: #1ab394; } }
+@keyframes signalBlink4 { 100% { background-color: #1ab394; border-color: #1ab394; } }
+
+/*# sourceMappingURL=signal.css.map */
