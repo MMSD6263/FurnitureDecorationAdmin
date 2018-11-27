@@ -100,6 +100,7 @@
     <script>
         var data = {!! $data !!}
         var datas = eval(data);
+        console.log(datas)
 
         var chart = Highcharts.chart('readCount', {
             chart: {
@@ -114,43 +115,44 @@
             yAxis: {
                 title: {
                     text: '人数'
+                }
+            },
+            plotOptions: {
+                line: {
+                    dataLabels: {
+                        // 开启数据标签
+                        enabled: false
+                    },
+                    // 关闭鼠标跟踪，对应的提示框、点击事件会失效
+                    enableMouseTracking: false
+                }
+            },
+            series: [
+                {
+                    name: '活跃用户',
+                    data: datas.active_user
                 },
-                plotOptions: {
-                    line: {
-                        dataLabels: {
-                            // 开启数据标签
-                            enabled: false
-                        },
-                        // 关闭鼠标跟踪，对应的提示框、点击事件会失效
-                        enableMouseTracking: false
-                    }
+                {
+                    name: '联络用户',
+                    data: datas.call_user
                 },
-                series: [
-                    {
-                        name: '新增用户',
-                        data: datas.new_user
-                    },
-                    {
-                        name: '活跃用户',
-                        data: datas.active_user
-                    },
-                    {
-                        name: '留存用户',
-                        data: datas.keep_user
-                    },
-                    {
-                        name: '联络用户',
-                        data: datas.call_user
-                    }
-                ]
-            }
+                {
+                    name: '留存用户',
+                    data: datas.keep_user
+                },
+                {
+                    name: '新增用户',
+                    data: datas.new_user
+                }
+            ]
         });
-    </script>
+</script>
 
-    <script src="{{asset('src/easyui/echarsjs/esl.js')}}"></script>
-    <script src="{{url('/src/easyui/js/DatePicker/WdatePicker.js')}}"></script>
-    <script src="{{url('/src/bootstrap-table/src/bootstrap-table.js')}}" type="text/javascript"></script>
-    <script src="{{url('/src/bootstrap-table/src/locale/bootstrap-table-zh-CN.js')}}"></script>
-    <script>
-    </script>
+
+<script src="{{asset('src/easyui/echarsjs/esl.js')}}"></script>
+<script src="{{url('/src/easyui/js/DatePicker/WdatePicker.js')}}"></script>
+<script src="{{url('/src/bootstrap-table/src/bootstrap-table.js')}}" type="text/javascript"></script>
+<script src="{{url('/src/bootstrap-table/src/locale/bootstrap-table-zh-CN.js')}}"></script>
+<script>
+</script>
 @endsection
