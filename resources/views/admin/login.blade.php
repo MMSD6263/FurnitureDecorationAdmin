@@ -36,7 +36,7 @@
                 <div class="logopanel m-b">
                     <h1><span>FD管理后台</span></h1>
                 </div>
-                <div style="height:220px;width:400px;border: 0px solid red;">Procedural trading platform</div>
+                <div style="height:220px;width:400px;border: 0px solid red;">Furniture Decoration Admin</div>
                 {{--<div class="m-b">HTTP://IWEIMEI.zCOM </div>--}}
                 {{--<strong>还没有账号？ <a href="#">立即注册&raquo;</a></strong>--}}
             </div>
