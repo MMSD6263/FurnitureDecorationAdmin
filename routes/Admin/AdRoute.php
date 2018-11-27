@@ -9,4 +9,5 @@
 $router->group(['prefix' => 'ad'], function($router){
     $router->get('index','AdController@index');
     $router->any('ajaxData','AdController@ajaxData');
+    $router->any('test','AdController@test');
 });

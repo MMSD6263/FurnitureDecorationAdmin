@@ -37,25 +37,11 @@ class AdController extends Controller
         return $result;
     }
 
-    /**
-     * 更改用户状态
-     */
-    public function changeStatus(Request $request)
+    public function test()
     {
-        $data   = $request->except(['_token']);
-        $result = $this->_ad->changeStatus($data);
-        return $result;
+        echo 'this is a test';
     }
 
 
-    /**
-     * 更改用户沟通状态
-     */
-    public function beCalled(Request $request)
-    {
-        $data   = $request->except(['_token']);
-        $result = $this->_ad->beCalled($data);
-        return $result;
-    }
 
 }
