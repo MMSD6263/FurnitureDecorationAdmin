@@ -13,7 +13,7 @@
           href="images/favicon.png"
           type="image/png">
 
-    <title>微赚管理后台</title>
+    <title>FD管理后台</title>
     <link href="{{url('/src/admin/css/bootstrap.min.css')}}"
           rel="stylesheet">
     <link href="{{url('/src/admin/css/font-awesome.min.css')}}"
@@ -34,7 +34,7 @@
         <div class="col-sm-7">
             <div class="signin-info">
                 <div class="logopanel m-b">
-                    <h1><span>微赚管理后台</span></h1>
+                    <h1><span>FD管理后台</span></h1>
                 </div>
                 <div style="height:220px;width:400px;border: 0px solid red;">Procedural trading platform</div>
                 {{--<div class="m-b">HTTP://IWEIMEI.zCOM </div>--}}
