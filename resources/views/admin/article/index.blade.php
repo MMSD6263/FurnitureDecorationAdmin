@@ -274,25 +274,6 @@
 //        }
 
 
-        {{--function doDelete(id)--}}
-        {{--{--}}
-            {{--$.ajax({--}}
-                {{--url:'{{url('/admin/article/deleteArticle')}}?_token='+token,--}}
-                {{--data:{'id':id},--}}
-                {{--type:'post',--}}
-                {{--dataType:'json',--}}
-                {{--success:function(data){--}}
-                    {{--if(data.success){--}}
-                        {{--layer.msg('操作成功！',{icon:1,time:1000});--}}
-                        {{--doSearch();--}}
-                    {{--}else{--}}
-                        {{--layer.msg('操作失败，请重试！',{icon:2,time:1000});--}}
-                    {{--}--}}
-                {{--}--}}
-            {{--})--}}
-        {{--}--}}
-
-
         function previewArticle(id)
         {
 
