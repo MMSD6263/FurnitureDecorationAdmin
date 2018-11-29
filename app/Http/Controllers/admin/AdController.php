@@ -68,6 +68,12 @@ class AdController extends Controller
     }
 
 
+    public function test1()
+    {
+        echo 'this is a test';
+    }
+
+
 
 
 }
