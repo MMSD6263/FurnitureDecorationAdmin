@@ -41,6 +41,7 @@ class AdController extends Controller
     public function test()
     {
         $file = 'http://video.yidianzixun.com/video/get-url?key=user_upload/1543458185676462743949424c54b6a4798c1e301da39.mp4';
+        exec("cd /usr/local/ffmpeg/bin");
         $vtime = exec("ffmpeg -i ".$file." 2>&1 | grep 'Duration' | cut -d ' ' -f 4 | sed s/,//");//总长度
 //        $ctime = date("Y-m-d H:i:s",filectime($file));//创建时间
         //$duration = explode(":",$time);
