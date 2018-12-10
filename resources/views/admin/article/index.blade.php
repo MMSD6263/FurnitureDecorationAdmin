@@ -66,13 +66,13 @@
                                             <div class="col-xs-1">
                                                 <button type="button" id="btn_query"
                                                         class="btn btn-primary btn-sm"
-                                                        onclick="doSearch()"><i class="glyphicon glyphicon-search"></i>&nbsp;查询
+                                                        onclick="doSearch()"><i class="glyphicon glyphicon-search"></i>&nbsp;查询数据
                                                 </button>
                                             </div>
                                             <div class="col-xs-1">
                                                 <button type="button" id="btn_query"
                                                         class="btn btn-success btn-sm"
-                                                        onclick="saveRedis()"><i class="glyphicon glyphicon-cog"></i>&nbsp;预热
+                                                        onclick="doAdd()"><i class="glyphicon glyphicon-cog"></i>&nbsp;添加图片
                                                 </button>
                                             </div>
                                         </div>
@@ -85,6 +85,7 @@
             </div>
         </div>
     </div>
+
 @endsection
 @section('js')
     <script src="{{url('/src/bootstrap-table/dist/bootstrap-table.js')}}" type="text/javascript"></script>
@@ -231,6 +232,7 @@
                 offset: params.offset // SQL语句偏移量
             }
         }
+
 
         function changeStatus(id,status)
         {

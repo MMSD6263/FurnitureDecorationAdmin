@@ -3,6 +3,10 @@
 namespace App\Repositories\admin;
 
 use App\Models\Image;
+use App\Models\Style;
+use App\Models\Color;
+use App\Models\Room;
+use App\Models\Size;
 use App\Repositories\commonclass\whereserach;
 use Illuminate\Support\Facades\DB;
 
@@ -12,11 +16,11 @@ use Illuminate\Support\Facades\DB;
 
 class ImageRepository
 {
-    private $_user;
+    private $_image;
 
     public function __construct()
     {
-        $this->_user    = new User();
+        $this->_image    = new Image();
     }
 
 
@@ -29,26 +33,36 @@ class ImageRepository
     {
         $limit  = $request['limit'];
         $offset = $request['offset'];
-        if(isset($request['nickName'])){
-            $this->_user = whereserach::whereName($this->_user,'nickName',trim($request['nickName']),true);
+        if(isset($request['style'])){
+            $this->_image = whereserach::whereid($this->_image,'style',$request['style']);
         }
-        if(isset($request['mobile'])){
-            $this->_user = whereserach::whereName($this->_user,'mobile',trim($request['mobile']),true);
+        if(isset($request['color'])){
+            $this->_image = whereserach::whereid($this->_image,'color',$request['color']);
         }
-        $lists = $this->_user
+        if(isset($request['size'])){
+            $this->_image = whereserach::whereid($this->_image,'size',$request['size']);
+        }
+        if(isset($request['room'])){
+            $this->_image = whereserach::whereid($this->_image,'room',$request['room']);
+        }
+
+
+        $lists = $this->_image
             ->orderBy('create_at','desc')
             ->limit($limit)
             ->offset($offset)
             ->get();
-        $count = $this->_user->count('uid');
+        $count = $this->_image->count('id');
         if(!empty($lists)){
             $lists = $lists->toArray();
             foreach($lists as &$value){
-                $value['avatar'] = '<img style="width:40px;height:40px;" src="'.$value['avatar'].'">';
+                $pic = json_decode($value['picUrl'],true)[0];
+                $value['small_pic'] = $pic;
             }
         }else{
             $lists = [];
         }
+
         $result = [
             'rows'  => $lists,
             'total' => $count,
@@ -56,42 +70,89 @@ class ImageRepository
         return $result;
     }
 
-    /**
-     * @param $data
-     * @return string
-     * 更改用户状态
-     */
-    public function changeStatus($data)
+    public function saveData($data)
     {
-        if(!empty($data['uid'])){
-            if($data['status'] == 1){
-                $status = 2;
-            }else if($data['status'] == 2){
-                $status = 1;
-            }
-            if($this->_user->where(['uid'=>$data['uid']])->update(['status'=>$status])){
+        $saveData = [];
+        $saveData['style_id'] = $data['style'];
+        $saveData['color_id'] = $data['color'];
+        $saveData['size_id'] = $data['size'];
+        $saveData['room_id'] = $data['room'];
+        $saveData['type'] = $data['type'];
+        $saveData['style_name'] = $data['style_name'];
+        $saveData['color_name'] = $data['color_name'];
+        $saveData['size_name'] = $data['size_name'];
+        $saveData['room_name'] = $data['room_name'];
+        $picArr = explode('##',$data['picUrl']);
+        array_pop($picArr);
+        $saveData['picUrl'] = json_encode($picArr);
+        if(!empty($data['id'])){
+            $id = $data['id'];
+            $res = $this->_image->where(['id'=>$id])->update($saveData);
+            if($res){
                 return message(true,'修改成功');
             }else{
-                return message(false,'修改失败！');
+                return message(false,'修改失败');
+            }
+        }else{
+            $res = $this->_image->insertGetId($saveData);
+            if($res){
+                return message(true,'添加成功');
+            }else{
+                return message(false,'添加失败');
             }
         }
+
     }
 
-    /**
-     * @param $data
-     * @return string
-     * 更改用户沟通状态
-     */
-    public function beCalled($data)
+    public function dataInfo($data)
     {
-        if(!empty($data['uid'])){
-            $beCalled = 2;
-            if($this->_user->where(['uid'=>$data['uid']])->update(['beCalled'=>$beCalled])){
-                return message(true,'修改成功');
-            }else{
-                return message(false,'修改失败！');
-            }
+        $info = $this->_image->where(['id'=>$data['id']])->select(['id','picUrl'])->first()->toArray();
+        $pics = json_decode($info['picUrl'],true);
+        $dataArr = [];
+        foreach($pics as $key=>$value){
+            $arr = [];
+            $arr['alt'] = '图片'.($key+1);
+            $arr['pid'] = $key;
+            $arr['src'] = $value;
+            $arr['thumb'] = $value;
+            array_push($dataArr,$arr);
         }
+        $dataInfo = array(
+            'title' => '图片',
+            'id'    => $data['id'],
+            'start' => 0,
+            'data'  => $dataArr
+        );
+        return json_encode($dataInfo);
     }
+
+    public function getStyleList()
+    {
+        $style = new Style();
+        $styleList = $style->get()->toArray();
+        return $styleList;
+    }
+
+    public function getSizeList()
+    {
+        $size = new Size();
+        $sizeList = $size->get()->toArray();
+        return $sizeList;
+    }
+
+    public function getColorList()
+    {
+        $color = new Color();
+        $colorList = $color->get()->toArray();
+        return $colorList;
+    }
+
+    public function getRoomList()
+    {
+        $room = new Room();
+        $roomList = $room->get()->toArray();
+        return $roomList;
+    }
+
 
 }

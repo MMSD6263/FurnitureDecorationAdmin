@@ -8,7 +8,10 @@
 
 $router->group(['prefix' => 'image'], function($router){
     $router->get('index','ImageController@index');
+    $router->get('add','ImageController@add');
     $router->any('ajaxData','ImageController@ajaxData');
     $router->any('saveData','ImageController@saveData');
     $router->any('deleteData','ImageController@deleteData');
+    $router->any('uploadImage','ImageController@uploadImage');
+    $router->any('dataInfo','ImageController@dataInfo');
 });
