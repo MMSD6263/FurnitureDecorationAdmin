@@ -31,38 +31,44 @@
                                 <div class="col-xs-12" style="height: 0px;">
                                     <form id="formSearch" class="form-horizontal">
                                         <div class="form-group" style=" margin-top: 27px;">
-                                            <div class="col-xs-2">
-                                                <input type="text"
-                                                       id="z_title"
-                                                       name="title"
-                                                       class="form-control"
-                                                       placeholder="文章标题">
-                                            </div>
-                                            <input type="hidden"
-                                                   name="_token"
-                                                   value="{{csrf_token()}}">
-                                            <div class="col-xs-1">
-                                                <select id="z_status" style="height: 30px;">
-                                                    <option value="">文章状态</option>
-                                                    <option value="1">已审核</option>
-                                                    <option value="0">待审核</option>
-                                                    <option value="2">已下架</option>
-                                                </select>
-                                            </div>
+                                            <input type="hidden" name="_token" value="{{csrf_token()}}">
                                             <div class="col-xs-1">
                                                 <select id="z_type" style="height: 30px;">
-                                                    <option value="">文章类型</option>
-                                                    {{--@foreach($typeList as $itemt)--}}
-                                                        {{--<option value="{{$itemt['artTypeId']}}">{{$itemt['artTypeName']}}</option>--}}
-                                                    {{--@endforeach--}}
+                                                    <option value="">图片类型</option>
+                                                    <option value="1">单图</option>
+                                                    <option value="2">套图</option>
                                                 </select>
                                             </div>
                                             <div class="col-xs-1">
-                                                <select id="z_source" style="height: 30px;">
-                                                    <option value="">文章来源</option>
-                                                    {{--@foreach($sourceList as $items)--}}
-                                                        {{--<option value="{{$items['sourceId']}}">{{$items['sourceName']}}</option>--}}
-                                                    {{--@endforeach--}}
+                                                <select id="z_style" style="height: 30px;">
+                                                    <option value="">风格</option>
+                                                    @foreach($styleList as $items)
+                                                        <option value="{{$items['id']}}">{{$items['style_name']}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="col-xs-1">
+                                                <select id="z_color" style="height: 30px;">
+                                                    <option value="">色系</option>
+                                                    @foreach($colorList as $itemc)
+                                                        <option value="{{$itemc['id']}}">{{$itemc['color_name']}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="col-xs-1">
+                                                <select id="z_size" style="height: 30px;">
+                                                    <option value="">户型</option>
+                                                    @foreach($sizeList as $itemz)
+                                                        <option value="{{$itemz['id']}}">{{$itemz['size_name']}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="col-xs-1">
+                                                <select id="z_room" style="height: 30px;">
+                                                    <option value="">空间</option>
+                                                    @foreach($roomList as $itemr)
+                                                        <option value="{{$itemr['id']}}">{{$itemr['room_name']}}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                             <div class="col-xs-1">
@@ -342,6 +348,14 @@
                             title:'添加时间',
                             align:'center'
                         },
+                        {
+                            field:'acts',
+                            title:'操作',
+                            align:'left',
+                            formatter:function(value,row,index){
+                                return '<a href="javascript:void(0);" class="btn btn-info btn-xs" onClick="delData('+ row.id + ')" ><i class="glyphicon glyphicon-remove"></i>&nbsp;删除</a>';
+                            }
+                        }
                     ]
                 });
             };
@@ -350,11 +364,11 @@
         // 分页查询参数，是以键值对的形式设置的
         function queryParams(params) {
             return {
-                style:$('#s_style').val(),
-                type:$('#s_type').val(),
-                color:$('#s_color').val(),
-                size:$('#s_size').val(),
-                room:$('#s_room').val(),
+                style:$('#z_style').val(),
+                type:$('#z_type').val(),
+                color:$('#z_color').val(),
+                size:$('#z_size').val(),
+                room:$('#z_room').val(),
                 limit: params.limit, // 每页显示数量
                 offset: params.offset // SQL语句偏移量
             }
@@ -362,7 +376,8 @@
 
         function doAdd()
         {
-            $("#myModal").modal('show');
+            window.location.href = '{{url("/admin/image/add")}}'
+//            $("#myModal").modal('show');
         }
 
         var pic_path = '';
@@ -424,7 +439,6 @@
             }
         }
 
-
         function showPics(id)
         {
             $.ajax({
@@ -434,11 +448,35 @@
                     console.log(json)
                     layer.photos({
                         photos:json,
-                        anim:1,
+                        anim:3,
                     })
 
                 }
             })
+        }
+        function delData(id)
+        {
+            layer.confirm('确定删除该图片吗',{
+                btn:['确定','取消'],
+                title:'提示',
+                },function(){
+                  $.ajax({
+                      url:'{{url("/admin/image/deleteData")}}?_token='+token+'&id='+id,
+                      dataType:'json',
+                      success:function(response){
+                          console.log(response)
+                          if(response.success){
+                              layer.msg(response.message,{icon:1});
+                              doSearch();
+                          }else{
+                              layer.msg(response.message,{icon:2})
+                          }
+                      }
+                  })
+                },function(){
+
+                }
+            )
         }
 
 

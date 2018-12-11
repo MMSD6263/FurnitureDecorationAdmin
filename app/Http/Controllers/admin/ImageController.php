@@ -83,4 +83,16 @@ class ImageController extends Controller
         $res = $this->_image->dataInfo($data);
         return $res;
     }
+
+    public function deleteData(Request $request)
+    {
+        $data = $request->except(['_token']);
+        $result = $this->_image->deleteData($data);
+        return $result;
+    }
+
+    public function test()
+    {
+        $this->_image->test();
+    }
 }

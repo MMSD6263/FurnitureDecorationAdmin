@@ -33,17 +33,20 @@ class ImageRepository
     {
         $limit  = $request['limit'];
         $offset = $request['offset'];
+        if(isset($request['type'])){
+            $this->_image = whereserach::whereid($this->_image,'type',$request['type']);
+        }
         if(isset($request['style'])){
-            $this->_image = whereserach::whereid($this->_image,'style',$request['style']);
+            $this->_image = whereserach::whereid($this->_image,'style_id',$request['style']);
         }
         if(isset($request['color'])){
-            $this->_image = whereserach::whereid($this->_image,'color',$request['color']);
+            $this->_image = whereserach::whereid($this->_image,'color_id',$request['color']);
         }
         if(isset($request['size'])){
-            $this->_image = whereserach::whereid($this->_image,'size',$request['size']);
+            $this->_image = whereserach::whereid($this->_image,'size_id',$request['size']);
         }
         if(isset($request['room'])){
-            $this->_image = whereserach::whereid($this->_image,'room',$request['room']);
+            $this->_image = whereserach::whereid($this->_image,'room_id',$request['room']);
         }
 
 
@@ -126,6 +129,25 @@ class ImageRepository
         return json_encode($dataInfo);
     }
 
+    public function deleteData($data)
+    {
+        $info = $this->_image->where(['id'=>$data['id']])->select(['picUrl'])->first()->toArray();
+        $pics = json_decode($info['picUrl'],true);
+        foreach($pics as $v){
+            $file = './'.substr($v,1);
+            if(!is_dir($file) && file_exists($file)){
+                unlink($file);
+            }
+        }
+        $res = $this->_image->where(['id'=>$data['id']])->delete();
+        if($res){
+            return message(true,'删除成功！');
+        }else{
+            return message(false,'删除失败！');
+        }
+
+    }
+
     public function getStyleList()
     {
         $style = new Style();
@@ -154,5 +176,9 @@ class ImageRepository
         return $roomList;
     }
 
-
+//    public function test()
+//    {
+//        $url = './src/upload/20181210/15444364489967.jpg';
+//        unlink($url);
+//    }
 }

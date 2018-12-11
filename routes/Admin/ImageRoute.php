@@ -14,4 +14,5 @@ $router->group(['prefix' => 'image'], function($router){
     $router->any('deleteData','ImageController@deleteData');
     $router->any('uploadImage','ImageController@uploadImage');
     $router->any('dataInfo','ImageController@dataInfo');
+    $router->any('test','ImageController@test');
 });
