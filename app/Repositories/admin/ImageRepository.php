@@ -60,7 +60,7 @@ class ImageRepository
             $lists = $lists->toArray();
             foreach($lists as &$value){
                 $pic = json_decode($value['picUrl'],true)[0];
-                $value['small_pic'] = '47.93.245.51:8001'.$pic;
+                $value['small_pic'] = $pic;
             }
         }else{
             $lists = [];
