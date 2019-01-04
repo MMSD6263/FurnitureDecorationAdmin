@@ -18,9 +18,6 @@ class LoginController extends Controller
      */
     public function index()
     {
-//        dd(2222222222);
-
-
         return view('admin.login');
     }
 
