@@ -54,7 +54,12 @@ $kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
 $response = $kernel->handle(
     $request = Illuminate\Http\Request::capture()
 );
-dd(234234234);
-$response->send();
+
+//$response->send();
+if($response->send()){
+    die('success');
+}else{
+    die('failure');
+}
 
 $kernel->terminate($request, $response);
