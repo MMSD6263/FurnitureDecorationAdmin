@@ -55,7 +55,7 @@ $response = $kernel->handle(
     $request = Illuminate\Http\Request::capture()
 );
 
-dd(11111111234324111);
 $response->send();
+dd(11111111234324111);
 
 $kernel->terminate($request, $response);
