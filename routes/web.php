@@ -20,6 +20,7 @@ Route::any('/i', 'admin\\LoginController@i');     //单用户登录
 Route::group(['prefix' => 'admin', 'namespace' => 'admin', 'middleware' => ['web', 'admin.login', 'sso']], function ($router) {
     $router->any('index', 'IndexController@index');
     $router->any('/', 'LoginController@index');
+    $router->any('login', 'LoginController@login');
     $router->any('index_v1', 'IndexController@index_v1');
     $router->any('ajaxData', 'IndexController@ajaxData');
     $router->any('tableData', 'IndexController@tableData');
