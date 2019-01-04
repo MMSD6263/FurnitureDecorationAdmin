@@ -56,6 +56,5 @@ $response = $kernel->handle(
 );
 
 $response->send();
-dd(11111111234324111);
 
 $kernel->terminate($request, $response);
