@@ -57,9 +57,9 @@ $response = $kernel->handle(
 
 //$response->send();
 if($response->send()){
-    die('success');
+    dd('success');
 }else{
-    die('failure');
+    dd('failure');
 }
 
 $kernel->terminate($request, $response);
