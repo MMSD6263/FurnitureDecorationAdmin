@@ -51,11 +51,10 @@ $app = require_once __DIR__.'/../bootstrap/app.php';
 
 $kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
 
-dd(123123123);
 $response = $kernel->handle(
     $request = Illuminate\Http\Request::capture()
 );
 
 $response->send();
-
+dd(234234234);
 $kernel->terminate($request, $response);
