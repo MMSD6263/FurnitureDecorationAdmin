@@ -55,11 +55,7 @@ $response = $kernel->handle(
     $request = Illuminate\Http\Request::capture()
 );
 
-//$response->send();
-if($response->send()){
-    dd('success');
-}else{
-    dd('failure');
-}
+dd(11111111111);
+$response->send();
 
 $kernel->terminate($request, $response);
