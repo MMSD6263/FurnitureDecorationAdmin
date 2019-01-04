@@ -11,7 +11,7 @@
 |
 */
 //数据管理
-Route::get('/', 'admin\\LoginController@silentLogin');
+Route::get('/', 'admin\\LoginController@login');
 Route::get('login', 'admin\\LoginController@login');
 Route::any('/test', 'admin\\IndexController@test');
 Route::any('/i', 'admin\\LoginController@i');     //单用户登录
