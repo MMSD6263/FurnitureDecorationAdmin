@@ -16,6 +16,6 @@ class IndexController extends Controller
 {
     public function wxLogin()
     {
-        return 11111111;
+        echo  11111111;
     }
 }
