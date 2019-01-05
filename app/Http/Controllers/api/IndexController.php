@@ -4,7 +4,7 @@ namespace App\Http\Controllers\api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Redis;
+use App\Repositories\api\IndexRepository;
 
 /**
  * 模板消息
@@ -14,8 +14,18 @@ use Illuminate\Support\Facades\Redis;
  */
 class IndexController extends Controller
 {
-    public function wxLogin(Request $reqeust)
+    private $_repository;
+    public function __construct()
     {
-        return $reqeust;
+        $this->_repository = new IndexRepository();
+    }
+    public function wxLogin(Request $request)
+    {
+        if(empty($request['code'])){
+            return message(false,'参数code不能为空');
+        }else{
+            $res =  $this->_repository->wxLogin($request);
+            return $res;
+        }
     }
 }
