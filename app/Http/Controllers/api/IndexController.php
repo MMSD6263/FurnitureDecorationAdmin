@@ -14,8 +14,8 @@ use Illuminate\Support\Facades\Redis;
  */
 class IndexController extends Controller
 {
-    public function wxLogin()
+    public function wxLogin(Request $reqeust)
     {
-        echo  11111111;
+        return $reqeust;
     }
 }
