@@ -16,6 +16,6 @@ class IndexController extends Controller
 {
     public function wxLogin()
     {
-        return message(true,'this is a test');
+        return 11111111;
     }
 }
