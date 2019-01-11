@@ -54,7 +54,6 @@ class ImageController extends Controller
     {
         $file = $request->file('file');
         if($file->isValid()){
-
             $originalName = $file->getClientOriginalName();
             $ext = $file->getClientOriginalExtension();
             $path = $file->getRealPath();
@@ -98,13 +97,6 @@ class ImageController extends Controller
 
     public function test()
     {
-//        $im=imagecreatefromjpeg("./src/upload/20190111/15471925283459.jpg");//参数是图片的存方路径
-//        $maxwidth="600";//设置图片的最大宽度
-//        $maxheight="400";//设置图片的最大高度
-//        $name="123";//图片的名称，随便取吧
-//        $filetype=".jpg";//图片类型
-//        $this->_image->resizeImage($im,$maxwidth,$maxheight,$name,$filetype);
-        $res = $this->_image->test();
-        dd($res);
+
     }
 }
