@@ -60,9 +60,9 @@ class ImageRepository
         if(!empty($lists)){
             $lists = $lists->toArray();
             foreach($lists as &$value){
-                $pic = json_decode($value['picUrl'],true);
+//                $pic = json_decode($value['picUrl'],true);
                 $pic = json_decode($value['picUrl'],true)[0];
-//                $value['small_pic'] = getenv('DOMAIN').$pic[0];
+                $value['small_pic'] = $pic;
 //                $picArr = [];
 //                foreach($pic as $v){
 //                    array_push($picArr,getenv('DOMAIN').$v);
