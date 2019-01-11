@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\admin\ImageRepository;
+use Images;
 
 /**
  * Class ArticleController
@@ -53,6 +54,7 @@ class ImageController extends Controller
     {
         $file = $request->file('file');
         if($file->isValid()){
+
             $originalName = $file->getClientOriginalName();
             $ext = $file->getClientOriginalExtension();
             $path = $file->getRealPath();
@@ -62,8 +64,11 @@ class ImageController extends Controller
             mkdirs($dir);
             $newName  = time().mt_rand(1000,9999).'.'.$ext;
             $bool = file_put_contents($dir.$newName,file_get_contents($path));
-            if($bool){
-                return array('success'=>true,'message'=>$save_dir.$newName);
+            $img = new Images($dir);
+            $res = $img->thumb($newName,400,254);
+            unlink($dir.$newName);
+            if(file_exists($dir.$res)){
+                return array('success'=>true,'message'=>$save_dir.$res);
             }else{
                 return array('success'=>false,'message'=>'failure');
             }
@@ -93,6 +98,13 @@ class ImageController extends Controller
 
     public function test()
     {
-        $this->_image->test();
+//        $im=imagecreatefromjpeg("./src/upload/20190111/15471925283459.jpg");//参数是图片的存方路径
+//        $maxwidth="600";//设置图片的最大宽度
+//        $maxheight="400";//设置图片的最大高度
+//        $name="123";//图片的名称，随便取吧
+//        $filetype=".jpg";//图片类型
+//        $this->_image->resizeImage($im,$maxwidth,$maxheight,$name,$filetype);
+        $res = $this->_image->test();
+        dd($res);
     }
 }
