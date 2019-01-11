@@ -7,11 +7,11 @@ use App\Http\Controllers\Controller;
 use App\Repositories\api\IndexRepository;
 
 /**
- * 模板消息
- * 发送模板消息
- * Class TemplateController
+ * Class IndexController
  * @package App\Http\Controllers\api
+ * 用户相关
  */
+
 class IndexController extends Controller
 {
     private $_repository;
@@ -19,6 +19,12 @@ class IndexController extends Controller
     {
         $this->_repository = new IndexRepository();
     }
+
+    /**
+     * @param Request $request
+     * @return string
+     * 用户登录获取openid
+     */
     public function wxLogin(Request $request)
     {
         if(empty($request['code'])){
@@ -28,4 +34,6 @@ class IndexController extends Controller
             return $res;
         }
     }
+
+
 }

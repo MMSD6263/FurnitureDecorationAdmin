@@ -92,9 +92,9 @@ class Images {
 
 	private function getInfo($name){
 		$data=getImageSize($this->path.$name);
-		$imageInfo["width"]=$data[0];
+		$imageInfo["width"] =$data[0];
 		$imageInfo["height"]=$data[1];
-		$imageInfo["type"]=$data[2];
+		$imageInfo["type"]  =$data[2];
 
 		return $imageInfo;
 	}
