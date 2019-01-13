@@ -35,5 +35,10 @@ class IndexController extends Controller
         }
     }
 
+    public function stylePrice(Request $request)
+    {
+        return $request;
+    }
+
 
 }
