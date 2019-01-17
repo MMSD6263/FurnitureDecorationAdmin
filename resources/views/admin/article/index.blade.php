@@ -96,9 +96,6 @@
             //1.初始化Table
             var oTable = new TableInit();
             oTable.Init();
-//            $("#permission").select2();
-            $("#myModal").draggable();
-            $("#myModal_admin").draggable();
         });
         var token = '{{csrf_token()}}';
         var url;

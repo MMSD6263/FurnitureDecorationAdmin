@@ -32,6 +32,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'admin', 'middleware' => ['web
     require(__DIR__ . '/Admin/OperationRoute.php');//系统目录
     require(__DIR__ . '/Admin/UserRoute.php');//系统目录
     require(__DIR__ . '/Admin/ImageRoute.php');//图例列表
+    require(__DIR__ . '/Admin/PriceRoute.php');//报价列表
 
 
 });
