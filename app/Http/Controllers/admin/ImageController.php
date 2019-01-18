@@ -97,6 +97,6 @@ class ImageController extends Controller
 
     public function test()
     {
-        shell_exec('convert ./public/src/1547777186656607645.png   ./public/src/1547777186656607645.jpg');
+        shell_exec('convert 1547777186656607645.png  1547777186656607645.jpg');
     }
 }
