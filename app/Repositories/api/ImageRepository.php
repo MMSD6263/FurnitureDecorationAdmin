@@ -15,11 +15,16 @@ class ImageRepository
 
    public function imageList($request)
    {
-       $offset = $request['page'];
-       $limit  = 10;
-//       if(isset($request['type_id'])){
-//           $this->_image = whereserach::whereid($this->_image,'type_id',$request['type_id']);
-//       }
+       $limit  = 20;
+       $offset = $limit * $request['page'];
+       if(isset($request['type'])){
+//           $this->_image = whereserach::whereid($this->_image,'type',$request['type']);
+           if($request['type'] == 0){
+               $this->_image = whereserach::whereid($this->_image,'type',2);
+           }else{
+               $this->_image = whereserach::whereid($this->_image,'type',2);
+           }
+       }
 //        if(isset($reqeust['style_id'])){
 //            $this->_image = whereserach::whereid($this->_image,'style_id',$request['style_id']);
 //        }
