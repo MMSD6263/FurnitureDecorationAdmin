@@ -42,15 +42,7 @@ class ImageRepository
            $list = $list->toArray();
            $arr = [];
            foreach($list as &$value){
-               $value['thumbCover1'] = 'https://www.52betterlife.com'.json_decode($value['picUrl'],true)[0];
-               $value['thumbCover2'] = getenv("DOMAIN").json_decode($value['picUrl'],true)[0];
-               dd($value['thumbCover2']);
-               if($value['thumbCover1'] == $value['thumbCover2']){
-                   dd('=');
-               }else{
-                   dd('!=');
-               }
-//               $value['thumbCover'] = 'https://www.52betterlife.com/src/api/images/th.jpg';
+               $value['thumbCover'] = getenv("DOMAIN").'/api'.json_decode($value['picUrl'],true)[0];
                $arr[$value['id']] = json_decode($value['picUrl'],true);
            }
            return ['lists'=>$list,'picList'=>$arr,'total'=>count($arr)];
