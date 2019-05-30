@@ -35,6 +35,9 @@ class ImageRepository
        $list = $this->_image->select(['id','picUrl','views','favors','type'])->limit($limit)->offset($offset)->orderby('views','desc')->get();
        if(!empty($list)){
            $list = $list->toArray();
+           foreach($list as &$value){
+               $value['thumbCover'] = json_decode($value['picUrl'],true)[0];
+           }
            return $list;
        }else{
            return [];
