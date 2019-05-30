@@ -46,7 +46,7 @@ class ImageRepository
                $value['picUrl'] = json_decode($value['picUrl'],true);
                $arr[$value['id']] = $value;
            }
-           return $arr;
+           return ['lists'=>$arr,'total'=>count($arr)];
        }else{
            return [];
        }
