@@ -38,6 +38,7 @@ class ImageRepository
            $arr = [];
            foreach($list as &$value){
                $value['thumbCover'] = getenv('DOMAIN').json_decode($value['picUrl'],true)[0];
+               $value['picUrl'] = json_decode($value['picUrl'],true);
                $arr[$value['id']] = $value;
            }
            return $arr;
