@@ -16,4 +16,5 @@ Route::group(['namespace' => 'api', 'middleware' => ['api']], function ($router)
     $router->get('wxLogin', 'IndexController@wxLogin');
     $router->get('imageList', 'ImageController@imageList');
     $router->post('stylePrice','IndexController@stylePrice');
+    $router->post('test','IndexController@test');
 });

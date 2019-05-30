@@ -25,4 +25,9 @@ class ImageController extends Controller
         $res = $this->_repository->imageList($request);
         return $res;
     }
+
+    public function test()
+    {
+        echo 'teshi';
+    }
 }
