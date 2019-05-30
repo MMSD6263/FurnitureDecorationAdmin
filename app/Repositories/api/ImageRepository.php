@@ -44,9 +44,10 @@ class ImageRepository
            foreach($list as &$value){
                $value['thumbCover'] = getenv('DOMAIN').json_decode($value['picUrl'],true)[0];
                $value['picUrl'] = json_decode($value['picUrl'],true);
-//               $arr[$value['id']] = $value;
+               $arr[$value['id']] = $value;
            }
-           return ['lists'=>$list,'total'=>count($arr)];
+           $arr = $arr->toArray();
+           return ['lists'=>$arr,'total'=>count($arr)];
        }else{
            return [];
        }
