@@ -35,9 +35,9 @@ class ImageRepository
        $list = $this->_image->select(['id','picUrl','views','favors','type'])->limit($limit)->offset($offset)->orderby('views','desc')->get();
        if(!empty($list)){
            $list = $list->toArray();
-           return message(200,$list);
+           return $list;
        }else{
-           return message(-200);
+           return [];
        }
 
 
