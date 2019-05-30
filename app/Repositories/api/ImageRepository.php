@@ -35,10 +35,12 @@ class ImageRepository
        $list = $this->_image->select(['id','picUrl','views','favors','type'])->limit($limit)->offset($offset)->orderby('views','desc')->get();
        if(!empty($list)){
            $list = $list->toArray();
+           $arr = [];
            foreach($list as &$value){
-               $value['thumbCover'] = json_decode($value['picUrl'],true)[0];
+               $value['thumbCover'] = getenv('DOMAIN').json_decode($value['picUrl'],true)[0];
+               $arr[$value['id']] = $value;
            }
-           return $list;
+           return $arr;
        }else{
            return [];
        }
