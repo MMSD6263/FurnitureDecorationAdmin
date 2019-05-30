@@ -44,6 +44,7 @@ class ImageRepository
            foreach($list as &$value){
                $value['thumbCover1'] = 'https://www.52betterlife.com'.json_decode($value['picUrl'],true)[0];
                $value['thumbCover2'] = getenv("DOMAIN").json_decode($value['picUrl'],true)[0];
+               dd($value['thumbCover2']);
                if($value['thumbCover1'] == $value['thumbCover2']){
                    dd('=');
                }else{
