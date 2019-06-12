@@ -47,6 +47,6 @@ class ArticleAuditorConsole extends Command
      */
     public function main()
     {
-
+        echo 'this is a test';
     }
 }
